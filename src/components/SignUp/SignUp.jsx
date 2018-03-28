@@ -22,6 +22,7 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
+  rule: 'user',
   error: null,
 };
 
@@ -37,6 +38,7 @@ class SignUpForm extends Component {
       username,
       email,
       passwordOne,
+      rule,
     } = this.state;
 
     const {
@@ -47,7 +49,7 @@ class SignUpForm extends Component {
       .then(authUser => {
 
         // Create a user in your own accessible Firebase Database too
-        db.doCreateUser(authUser.uid, username, email)
+        db.doCreateUser(authUser.uid, username, email, rule)
           .then(() => {
             this.setState(() => ({ ...INITIAL_STATE }));
             history.push(routes.HOME);

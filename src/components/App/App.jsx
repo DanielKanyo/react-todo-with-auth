@@ -30,8 +30,6 @@ const App = () =>
       <Route exact path={routes.HOME} component={() => <HomePage />} />
       <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
 
-      <hr/>
-
       </div>
   </Router>
 
