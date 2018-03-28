@@ -8,16 +8,15 @@ class HomePage extends Component {
     super(props);
 
     this.state = {
-      loggedInUser: ''
+      loggedInUserId: ''
     };
   }
 
   componentDidMount() {
 
-    let loggedInUser = auth.getCurrentUser();
-    let loggedInUserId = loggedInUser.uid;
+    let loggedInUserId = auth.getCurrentUserId();
     
-    this.setState(() => ({ loggedInUser: loggedInUserId }))
+    this.setState(() => ({ loggedInUserId: loggedInUserId }))
   }
 
   render() {
@@ -26,7 +25,7 @@ class HomePage extends Component {
         <h1>Home</h1>
         <p>Logged in users id:</p>
 
-        {this.state.loggedInUser}
+        {this.state.loggedInUserId}
       </div>
     );
   }
