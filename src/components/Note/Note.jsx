@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from "prop-types";
+import './Note.css';
 
 class Note extends React.Component {
 
@@ -11,8 +12,9 @@ class Note extends React.Component {
 
    render() {
       return (
-         <div>
-           <p>{this.noteContent}</p>
+         <div className="note-item-container">
+           <div className="note-item-content">{this.noteContent}</div>
+           <button className="note-item-remove-btn">x</button>
          </div>
       );
    }
