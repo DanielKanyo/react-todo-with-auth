@@ -16,23 +16,39 @@ class HomePage extends Component {
     };
     this.addNote = this.addNote.bind(this);
     this.userInput = this.userInput.bind(this);
+    this.removeNote = this.removeNote.bind(this);
   }
 
   componentDidMount() {
     let loggedInUserId = auth.getCurrentUserId();
-    this.setState(() => ({ loggedInUserId: loggedInUserId }))
+    let notes;
+    const prevNotes = this.state.notes;
+
+    this.setState(() => ({ loggedInUserId: loggedInUserId }));
+
+    db.getNotes(loggedInUserId).then(snap => {
+      notes = snap.notes;
+      for (var key in notes) {
+        if (notes.hasOwnProperty(key)) {
+          prevNotes.push({
+            id: key,
+            noteContent: notes[key].noteContent
+          });
+        }
+      }
+      this.setState({ notes: prevNotes });
+    });
   }
 
   addNote(e) {
-    const prevNotes = this.state.notes;
-
-    db.addNote(this.state.loggedInUserId, prevNotes.length, this.state.inputValue);
-
-    prevNotes.push({ id: prevNotes.length + 1, noteContent: this.state.inputValue });
-
-    this.setState({ notes: prevNotes });
+    // const prevNotes = this.state.notes;
+    db.addNote(this.state.loggedInUserId, this.state.inputValue);
+    // prevNotes.push({ id: prevNotes.length + 1, noteContent: this.state.inputValue });
+    // this.setState({ notes: prevNotes });
     this.setState({ inputValue: '' });
   }
+
+  removeNote(noteId) { }
 
   userInput(e) {
     this.setState({ inputValue: e.target.value });
@@ -45,12 +61,12 @@ class HomePage extends Component {
         <p>Logged in users id:</p> {this.state.loggedInUserId}
 
         <div className="note-input-container">
-          <input 
-            type="text" 
-            value={this.state.inputValue} 
-            placeholder="add note" 
-            className="note-input" 
-            onChange={this.userInput} 
+          <input
+            type="text"
+            value={this.state.inputValue}
+            placeholder="add note"
+            className="note-input"
+            onChange={this.userInput}
           />
           <button onClick={() => this.addNote()} className="add-note">+</button>
         </div>

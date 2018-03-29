@@ -10,12 +10,15 @@ export const doCreateUser = (id, username, email, rule) =>
   });
 
 // Add note
-export const addNote = (id, noteId, noteContent) =>
-  db.ref(`users/${id}/notes/note${noteId}`).set({
-    noteId,
+export const addNote = (id, noteContent) =>
+  db.ref(`users/${id}/notes`).push().set({
     noteContent
   });
 
+export const getNotes = (id) =>
+  db.ref(`users/${id}`).once('value').then(function(snap) {
+    return snap.val();
+  });
 
 export const onceGetUsers = () =>
   db.ref('users').once('value');
