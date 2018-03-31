@@ -22,7 +22,7 @@ class HomePage extends Component {
   componentDidMount() {
     let loggedInUserId = auth.getCurrentUserId();
     let notes;
-    const prevNotes = this.state.notes;
+    let previousNotes = this.state.notes;
 
     this.setState(() => ({ loggedInUserId: loggedInUserId }));
 
@@ -30,25 +30,54 @@ class HomePage extends Component {
       notes = snap.notes;
       for (var key in notes) {
         if (notes.hasOwnProperty(key)) {
-          prevNotes.push({
+          previousNotes.push({
             id: key,
             noteContent: notes[key].noteContent
           });
         }
       }
-      this.setState({ notes: prevNotes });
+      this.setState({ notes: previousNotes });
     });
   }
 
+  componentWillMount() {
+
+  }
+
   addNote(e) {
-    // const prevNotes = this.state.notes;
-    db.addNote(this.state.loggedInUserId, this.state.inputValue);
-    // prevNotes.push({ id: prevNotes.length + 1, noteContent: this.state.inputValue });
-    // this.setState({ notes: prevNotes });
+    let previousNotes = this.state.notes;
+    let inputValue = this.state.inputValue;
+
+    db.addNote(this.state.loggedInUserId, this.state.inputValue).then(snap => {
+      previousNotes.push({
+        id: snap.key,
+        noteContent: inputValue
+      });
+
+      this.setState({
+        notes: previousNotes
+      });
+    });
+
     this.setState({ inputValue: '' });
   }
 
-  removeNote(noteId) { }
+  removeNote(noteId) {
+    let loggedInUserId = this.state.loggedInUserId;
+    let previousNotes = this.state.notes;
+
+    db.removeNote(loggedInUserId, noteId);
+
+    for (let i = 0; i < previousNotes.length; i++) {
+      if (previousNotes[i].id === noteId) {
+        previousNotes.splice(i, 1);
+      }
+    }
+
+    this.setState({
+      notes: previousNotes
+    });
+  }
 
   userInput(e) {
     this.setState({ inputValue: e.target.value });
@@ -75,7 +104,12 @@ class HomePage extends Component {
           {
             this.state.notes.map(note => {
               return (
-                <Note noteContent={note.noteContent} noteId={note.id} key={note.id} />
+                <Note
+                  noteContent={note.noteContent}
+                  noteId={note.id}
+                  key={note.id}
+                  removeNote={this.removeNote}
+                />
               );
             })
           }
