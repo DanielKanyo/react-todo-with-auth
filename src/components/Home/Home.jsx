@@ -5,6 +5,9 @@ import { auth, db } from '../../firebase';
 import "./Home.css";
 import Note from '../Note/Note';
 
+import Icon from 'react-icons-kit';
+import { plus } from 'react-icons-kit/iconic/plus';
+
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -48,18 +51,21 @@ class HomePage extends Component {
     let previousNotes = this.state.notes;
     let inputValue = this.state.inputValue;
 
-    db.addNote(this.state.loggedInUserId, this.state.inputValue).then(snap => {
-      previousNotes.push({
-        id: snap.key,
-        noteContent: inputValue
+    if (inputValue) {
+      db.addNote(this.state.loggedInUserId, this.state.inputValue).then(snap => {
+        previousNotes.push({
+          id: snap.key,
+          noteContent: inputValue
+        });
+
+        this.setState({
+          notes: previousNotes
+        });
       });
 
-      this.setState({
-        notes: previousNotes
-      });
-    });
+      this.setState({ inputValue: '' });
+    }
 
-    this.setState({ inputValue: '' });
   }
 
   removeNote(noteId) {
@@ -86,18 +92,20 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <h1>Home</h1>
-        <p>Logged in users id:</p> {this.state.loggedInUserId}
+        {/* <h1>Home</h1>
+        <p>Logged in users id:</p> {this.state.loggedInUserId} */}
 
         <div className="note-input-container">
           <input
             type="text"
             value={this.state.inputValue}
-            placeholder="add note"
+            placeholder="Add note here..."
             className="note-input"
             onChange={this.userInput}
           />
-          <button onClick={() => this.addNote()} className="add-note">+</button>
+          <button onClick={() => this.addNote()} className="add-note">
+            <Icon icon={plus} />
+          </button>
         </div>
 
         <div className="note-list-container">

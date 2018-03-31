@@ -2,6 +2,9 @@ import React from 'react';
 import propTypes from "prop-types";
 import './Note.css';
 
+import Icon from 'react-icons-kit';
+import { ic_clear } from 'react-icons-kit/md/ic_clear';
+
 class Note extends React.Component {
 
   constructor(props) {
@@ -19,7 +22,9 @@ class Note extends React.Component {
       return (
          <div className="note-item-container">
            <div className="note-item-content">{this.noteContent}</div>
-           <button onClick={() => this.handleRemoveNote(this.noteId)} className="note-item-remove-btn">x</button>
+           <button onClick={() => this.handleRemoveNote(this.noteId)} className="note-item-remove-btn">
+            <Icon icon={ic_clear} />
+           </button>
          </div>
       );
    }

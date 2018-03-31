@@ -1,0 +1,60 @@
+.navigation-header {
+  background: #2d2d2d;
+  color: #f2f2f2;
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  width: 100%;
+}
+
+.navigation-header ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.navigation-header li {
+  float: left;
+}
+
+.navigation-header li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navigation-header li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.navigation-header .active {
+  background-color: #01c66b;
+}
+
+.navigation-header li.right {
+  float: right;
+  height: 48px;
+}
+
+.navigation-header li.right button {
+  background: none;
+  border: none;
+  padding: 14px 16px;
+  outline: none;
+}
+
+.navigation-header li.right button:hover {
+  background: #111;
+}
+
+.navigation-header li.right button div {
+  vertical-align: middle;
+}
+
+.navigation-header li.right a div {
+  vertical-align: middle;
+}
