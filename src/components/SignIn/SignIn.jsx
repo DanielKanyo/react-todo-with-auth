@@ -6,9 +6,11 @@ import { PasswordForgetLink } from '../PasswordForget/PasswordForget';
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
 
+import './SignIn.css';
+
 const SignInPage = ({ history }) =>
-  <div>
-    <h1>SignIn</h1>
+  <div className="sing-in-container">
+    <p>SignIn</p>
     <SignInForm history={history} />
     <PasswordForgetLink />
     <SignUpLink />

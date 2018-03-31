@@ -5,9 +5,11 @@ import { PasswordForgetForm } from '../PasswordForget/PasswordForget';
 import PasswordChangeForm from '../PasswordChange/PasswordChange';
 import withAuthorization from '../Session/withAuthorization';
 
+import './Account.css';
+
 const AccountPage = (props, { authUser }) =>
-  <div>
-    <h1>Account: {authUser.email}</h1>
+  <div className="account-container">
+    <p>Account: {authUser.email}</p>
     <PasswordForgetForm />
     <PasswordChangeForm />
   </div>

@@ -7,9 +7,11 @@ import {
 import { auth, db } from '../../firebase';
 import * as routes from '../../constants/routes';
 
+import './SignUp.css';
+
 const SignUpPage = ({ history }) =>
-  <div>
-    <h1>SignUp</h1>
+  <div className="sign-up-container">
+    <p>SignUp</p>
     <SignUpForm history={history} />
   </div>
 
