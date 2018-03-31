@@ -8,6 +8,11 @@
   width: 100%;
 }
 
+.app-title {
+  padding: 14px 16px;
+  color: #8f8f8f;
+}
+
 .navigation-header ul {
   list-style-type: none;
   margin: 0;
