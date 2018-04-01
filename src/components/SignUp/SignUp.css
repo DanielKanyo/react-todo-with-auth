@@ -1,3 +1,7 @@
 .sign-up-container {
   padding: 68px 20px 90px 20px;
 }
+
+.sign-up-container button {
+  color: black;
+}
