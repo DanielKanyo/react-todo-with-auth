@@ -5,3 +5,38 @@
 .sing-in-container button {
   color: black;
 }
+
+.sign-in-form-container input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 9px 14px;
+  border-radius: 4px;
+  border: 0px;
+}
+
+.sign-in-form-container button {
+  padding: 9px 14px;
+  width: 100%;
+  border-radius: 4px;
+  border: none;
+  color: #f2f2f2;
+  background: #01c66b;
+}
+
+.sign-in-form-container button:active {
+  background: #01a95a;
+}
+
+.do-not-have-account, .forgot-passwd {
+  margin: 5px 0px;
+  color: #bababa;
+  text-align: right;
+}
+
+.forgot-passwd {
+  margin-top: 10px;
+}
+
+.do-not-have-account a, .forgot-passwd a {
+  color: #f2f2f2;
+}

@@ -62,16 +62,16 @@ class PasswordForgetForm extends Component {
           Reset My Password
         </button>
 
-        { error && <p>{error.message}</p> }
+        {error && <p>{error.message}</p>}
       </form>
     );
   }
 }
 
 const PasswordForgetLink = () =>
-  <p>
+  <div className="forgot-passwd">
     <Link to={routes.PASSWORD_FORGET}>Forgot Password?</Link>
-  </p>
+  </div>
 
 export default PasswordForgetPage;
 

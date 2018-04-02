@@ -67,25 +67,27 @@ class SignInForm extends Component {
       email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={email}
-          onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={password}
-          onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
+      <div className="sign-in-form-container">
+        <form onSubmit={this.onSubmit}>
+          <input
+            value={email}
+            onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
+            type="text"
+            placeholder="Email Address"
+          />
+          <input
+            value={password}
+            onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
+            type="password"
+            placeholder="Password"
+          />
+          <button disabled={isInvalid} type="submit">
+            Sign In
+          </button>
 
-        { error && <p>{error.message}</p> }
-      </form>
+          {error && <p>{error.message}</p>}
+        </form>
+      </div>
     );
   }
 }

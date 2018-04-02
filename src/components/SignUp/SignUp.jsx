@@ -113,18 +113,18 @@ class SignUpForm extends Component {
           Sign Up
         </button>
 
-        { error && <p>{error.message}</p> }
+        {error && <p>{error.message}</p>}
       </form>
     );
   }
 }
 
 const SignUpLink = () =>
-  <p>
+  <div className="do-not-have-account">
     Don't have an account?
-    {' '}
+      {' '}
     <Link to={routes.SIGN_UP}>Sign Up</Link>
-  </p>
+  </div>
 
 export default withRouter(SignUpPage);
 
