@@ -2,6 +2,22 @@
   padding: 68px 20px 90px 20px;
 }
 
+.account-container input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 9px 14px;
+  border-radius: 4px;
+  border: 0px;
+  outline: none;
+}
+
 .account-container button {
-  color: black;
+  margin-bottom: 10px;
+  padding: 9px 14px;
+  width: 100%;
+  border-radius: 4px;
+  border: none;
+  color: #f2f2f2;
+  background: #01c66b;
+  outline: none;
 }

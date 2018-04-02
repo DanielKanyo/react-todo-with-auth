@@ -11,6 +11,7 @@ const AccountPage = (props, { authUser }) =>
   <div className="account-container">
     <p>Account: {authUser.email}</p>
     <PasswordForgetForm />
+    <hr/>
     <PasswordChangeForm />
   </div>
 
